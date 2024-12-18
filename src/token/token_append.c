@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   token_append.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: vgabovs <vgabovs@student.42wolfsburg.de    +#+  +:+       +#+        */
+/*   By: ariazano <ariazano@student.42wolfsburg.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/15 17:12:44 by ariazano          #+#    #+#             */
-/*   Updated: 2024/02/07 13:14:11 by vgabovs          ###   ########.fr       */
+/*   Updated: 2024/12/18 11:06:19 by ariazano         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -72,20 +72,9 @@ void	what_separator(char **line, t_data *data)
 		append_sep_type(T_RED_INP, line , data);
 	else if (!ft_strncmp(*line, ">", 1))
 	 	append_sep_type(T_RED_OUT, line , data);
-//	else if (!ft_strncmp(*line, "$", 1))
-//		append_sep_type(T_DOLLAR, line , data);
-	else if (!ft_strncmp(*line, "&&", 2))
-		append_sep_type(T_AND, line , data);
-//	else if (!ft_strncmp(*line, "&", 1))
-//		append_sep_type(T_AMPER, line , data);
-	else if (!ft_strncmp(*line, "(", 1))
-	 	append_sep_type(T_LPAR, line , data);
-	else if (!ft_strncmp(*line, ")", 1))
-		append_sep_type(T_RPAR, line , data);
-	else if (!ft_strncmp(*line, "||", 2))
-		append_sep_type(T_OR, line , data);
-//	else if (!ft_strncmp(*line, "|", 1))
-//		append_sep_type(T_PIPE, line , data);
+	else if (!ft_strncmp(*line, "|", 1))
+		append_sep_type(T_PIPE, line , data);
+	else if (!ft_strncmp(*line, ""))
 	else
 		append_sep_type(T_PIPE, line , data);
 }

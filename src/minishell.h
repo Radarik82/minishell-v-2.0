@@ -6,7 +6,7 @@
 /*   By: ariazano <ariazano@student.42wolfsburg.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/08 23:16:32 by ariazano          #+#    #+#             */
-/*   Updated: 2024/12/16 11:16:33 by ariazano         ###   ########.fr       */
+/*   Updated: 2024/12/18 11:43:44 by ariazano         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,49 +38,20 @@
 # define BLUE	"\033[1;34m"
 # define RESET	"\033[0m"
 
-// stop-word )))
-# define JUST_SAY_STOP 1
-
-
-// Keys
-//# define ESCA 53
-//# define W 13
-//# define UP 12
-//# define A 0
-//# define LEFT 123
-//# define S 1
-//# define DOWN 125
-//# define D 2
-//# define RIGHT 124
-//# define RESTART 35
-
 # define PROMPT "minishell$ "
 
-// types of token |  &  ;  <  >  (  )  $  `  \  "  '  <space>  <tab>  <newline>
 typedef enum e_token_type
 {
-	T_ID,
+	T_WORD = 1,
 	T_PIPE,
-	T_OR,
-	T_AND,
-	T_RPAR,
-	T_LPAR,
 	T_RED_INP,
 	T_RED_OUT,
 	T_DELIM,
 	T_APPEND,
-	T_THREE_OUT,
-	T_THREE_IN,
-	T_IN_OUT,
-//	T_NEWLINE,
-//	T_AMPER,
-//	T_DOLLAR,
-//	T_SPACE,
+	T_NEWLINE,
 }			t_token_type;
 
-// a | s < d > f ( g ) h << j >> k || l && q <<< w >>> e <> r
-
-
+/*
 typedef struct s_err
 {
 	int		code;
@@ -129,32 +100,73 @@ typedef struct s_token
 	struct s_token		*next;
 	struct s_token		*prev;
 }				t_token;
+*/
+typedef struct s_pipe_list
+{
+	int					fd[2];
+	struct s_pipe_list	*next;
+	struct s_pipe_list	*prev;
+}				t_pipe_list;
+
+typedef struct s_envlst
+{
+	char			*var_name;
+	char			*var_value;
+	struct s_envir	*next;
+	struct s_envir	*prev;
+}				t_envlst;
+
+typedef struct s_token
+{
+	t_token_type		type;
+	char				*word;
+	struct s_token		*next;
+	struct s_token		*prev;
+}				t_token;
+
+
+typedef struct s_redir
+{
+	t_token			*redir_token;
+	t_token			*redir_word;
+	struct s_redir	*next;
+}				t_redir;
+
+typedef struct s_cmd_list
+{
+	char				*value;
+	char				**args_array;
+	t_redir				*redir_list;
+	t_redir				*in;
+	t_redir				*out;
+	int					fd_in;
+	int					redir_status;
+	struct s_cmd_list	*next;
+	struct s_cmd_list	*prev;
+}				t_cmd_list;
 
 typedef struct	s_data
 {
-	char			*input_minishell;
-	struct s_token	*token_list;
+	char			*input_minishell; // 
 	char			**path;
 	int				input_argc;
 	char			**input_argv;
 	char			*input_line;
-	int				exiterrorcode; //??
+	int				exiterrorcode; // cover as much as can
 	int				errorflag;
 	int				isseparator;
 	char			**envp;
 	char			**env_copy;
 	int				stdin;
 	int				stdout;
-	struct termios	original_term; // ??
 
-	t_token	*tokens;
-	t_token	*current_token;
-	t_token	*token_proc; //??
-	t_err	*err;
+	struct s_token	*token_list;
+	t_token			*tokens;
+	t_token			*current_token;
+	t_token			*token_proc; //??
 
 	t_envlst	*envlst;
 	t_envlst	*explst;
-
 }				t_data;
 
 //extern	t_data  *data;
