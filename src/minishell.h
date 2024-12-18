@@ -6,7 +6,7 @@
 /*   By: ariazano <ariazano@student.42wolfsburg.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/08 23:16:32 by ariazano          #+#    #+#             */
-/*   Updated: 2024/12/18 11:43:44 by ariazano         ###   ########.fr       */
+/*   Updated: 2024/12/18 13:34:16 by ariazano         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -101,6 +101,8 @@ typedef struct s_token
 	struct s_token		*prev;
 }				t_token;
 */
+
+// list of pipes
 typedef struct s_pipe_list
 {
 	int					fd[2];
@@ -108,6 +110,7 @@ typedef struct s_pipe_list
 	struct s_pipe_list	*prev;
 }				t_pipe_list;
 
+// ENV from input or default
 typedef struct s_envlst
 {
 	char			*var_name;
@@ -116,6 +119,7 @@ typedef struct s_envlst
 	struct s_envir	*prev;
 }				t_envlst;
 
+// tokens from input
 typedef struct s_token
 {
 	t_token_type		type;
@@ -132,6 +136,7 @@ typedef struct s_redir
 	struct s_redir	*next;
 }				t_redir;
 
+// list of cmd to execute
 typedef struct s_cmd_list
 {
 	char				*value;
@@ -145,6 +150,7 @@ typedef struct s_cmd_list
 	struct s_cmd_list	*prev;
 }				t_cmd_list;
 
+// general data vars 
 typedef struct	s_data
 {
 	char			*input_minishell; // 
@@ -160,6 +166,7 @@ typedef struct	s_data
 	int				stdin;
 	int				stdout;
 
+	t_cmd_list		*list;
 	struct s_token	*token_list;
 	t_token			*tokens;
 	t_token			*current_token;
@@ -173,7 +180,6 @@ typedef struct	s_data
 
 char	*my_readline(void);
 
-
 // token create
 void	cut_to_token(t_data *data);
 t_token	*token_process(char *line, t_data *data);
@@ -186,22 +192,15 @@ void	env_to_minishell(t_data *data);
 int		this_token_prec(t_token *token);
 int		this_token_redir(t_token *token);
 int		this_token_binop(t_token *token);
-void	new_node(t_tree *node);
 void	token_error_check(t_token *lst, t_data *data);
 void	next_token(t_token *lst);
-
-
-
 
 void	minishell_cycle(t_data *data);
 void	init_minishell_struct(char **envp, t_data **data);
 int		append_identifier(char **line_ptr, t_data *data);
 
-
-
 bool	skip_quotes(char *line, int *i);
 int		isseparator(char *s);
-
 
 void	what_separator(char **line, t_data *data);
 void	append_sep_type(t_token_type type, char **line_ptr, t_data *data);
@@ -210,16 +209,6 @@ void	message_quotes_error(char linei);
 
 void	print_dlinked_list(t_token *list);
 int		if_empty_line(t_data *data);
-
-// tree nodes operation
-void		addback_dir_node(t_dir **lst, t_dir *node);
-t_dir_type	new_dir_node(t_token_type type, char *value);
-t_tree		*new_tree_node(t_tree_type type);
-t_dir_type	token_t_to_tree_dir_t(t_token_type type);
-t_tree_type	token_t_to_tree_t(t_token_type type);
-void		next_tree_node(t_token *tree, t_data *data);
-
-
 t_envlst	*ft_envlstlast(t_envlst *lst);
 void		ft_envlstadd_back(t_envlst **lst, t_envlst *new);
 t_envlst	*ft_envlstnew(char *name, char *value, int is_shlvl);
@@ -230,8 +219,5 @@ char		*find_env_value(char *name, t_envlst *envlst);
 void		unset_env_name_value(char *name, t_envlst *envlst);
 void		set_env_name_value(char *name, char *value, t_envlst *envlst);
 int			get_pwd(char **args);
-
-
-
 
 #endif

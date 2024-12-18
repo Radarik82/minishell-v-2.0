@@ -6,11 +6,11 @@
 /*   By: ariazano <ariazano@student.42wolfsburg.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/15 17:12:44 by ariazano          #+#    #+#             */
-/*   Updated: 2024/12/18 11:06:19 by ariazano         ###   ########.fr       */
+/*   Updated: 2024/12/18 12:35:53 by ariazano         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "minishell.h"
+#include "../minishell.h"
 
 int	append_identifier(char **line, t_data *data)
 {
@@ -74,9 +74,7 @@ void	what_separator(char **line, t_data *data)
 	 	append_sep_type(T_RED_OUT, line , data);
 	else if (!ft_strncmp(*line, "|", 1))
 		append_sep_type(T_PIPE, line , data);
-	else if (!ft_strncmp(*line, ""))
-	else
-		append_sep_type(T_PIPE, line , data);
+	else if (!ft_strncmp(*line != T_NEWLINE))
 }
 
 int	isseparator(char *s)

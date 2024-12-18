@@ -3,14 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   token.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: vgabovs <vgabovs@student.42wolfsburg.de    +#+  +:+       +#+        */
+/*   By: ariazano <ariazano@student.42wolfsburg.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/08 23:16:32 by ariazano          #+#    #+#             */
-/*   Updated: 2024/02/07 13:35:36 by vgabovs          ###   ########.fr       */
+/*   Updated: 2024/12/18 12:14:51 by ariazano         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-# include "minishell.h"
+# include "../minishell.h"
 
 void	cut_to_token(t_data *data)
 {
@@ -37,8 +37,7 @@ t_token	*token_process(char *line, t_data *data)
 		if (ft_isspace(*line))
 			ft_skip_spaces(&line);
 		else if (!ft_strncmp(line, "<", 1) || !ft_strncmp(line, ">", 1)
-				 || !ft_strncmp(line, "|", 1) || !ft_strncmp(line, "&&", 2)
-				 || !ft_strncmp(line, "(", 1) || !ft_strncmp(line, ")", 1))
+				 || !ft_strncmp(line, "|", 1))
 		{
 			what_separator(&line, data);
 			error = (!data->isseparator && 1);

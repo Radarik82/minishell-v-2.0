@@ -6,7 +6,7 @@
 /*   By: ariazano <ariazano@student.42wolfsburg.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/16 10:38:07 by ariazano          #+#    #+#             */
-/*   Updated: 2024/12/16 11:34:10 by ariazano         ###   ########.fr       */
+/*   Updated: 2024/12/18 13:21:53 by ariazano         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,11 +39,11 @@ void	minishell_cycle(t_data *data)
 	}
 }
 
-// void	reset_data(t_data *data)
-// {
-// 	if (!data)
-// 		return ;
-// 	free_tokens(&data->tokens);
-// //	free_list(&data->list);
-// 	ft_strdel(&data->input_line);
-// }
+void	reset_data(t_data *data)
+{
+	if (!data)
+		return ;
+	free_tokens(&data->token_list);
+	free_list(&data->list);
+	ft_strdel(&data->input_line);
+}
