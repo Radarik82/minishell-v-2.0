@@ -6,7 +6,7 @@
 /*   By: ariazano <ariazano@student.42wolfsburg.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/18 10:39:37 by ariazano          #+#    #+#             */
-/*   Updated: 2024/12/18 10:44:25 by ariazano         ###   ########.fr       */
+/*   Updated: 2024/12/19 12:27:42 by ariazano         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,7 +55,7 @@ void	free_list(t_cmd_list **list)
 	while ((*list))
 	{
 		tmp = (*list)->next;
-		free_2darray((*list)->args_array);
+	//	free_2darray((*list)->args_array);
 		if ((*list)->redir_list)
 		{
 			free_redir_list(&((*list)->redir_list));
@@ -82,11 +82,11 @@ void	free_data(t_data *data)
 {
 	if (!data)
 		return ;
-	free_2darray(data->env_array);
-	free_2darray(data->new_env_array);
+	//free_2darray(data->env_array);
+	//free_2darray(data->new_env_array);
 	free_tokens(&data->token_list);
-	ft_envclear(&data->env_list);
-	ft_envclear(&data->export_list);
+	//ft_envclear(&data->env_list);
+	//ft_envclear(&data->export_list);
 	free_list(&data->list);
 	ft_strdel(&data->input_line);
 	free(data);

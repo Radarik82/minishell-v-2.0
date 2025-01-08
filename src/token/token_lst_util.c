@@ -3,31 +3,35 @@
 /*                                                        :::      ::::::::   */
 /*   token_lst_util.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: vgabovs <vgabovs@student.42wolfsburg.de    +#+  +:+       +#+        */
+/*   By: ariazano <ariazano@student.42wolfsburg.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/15 17:06:10 by ariazano          #+#    #+#             */
-/*   Updated: 2024/02/07 13:35:27 by vgabovs          ###   ########.fr       */
+/*   Updated: 2025/01/08 00:37:01 by ariazano         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 # include "minishell.h"
 
-void	clear_token_list(t_token **lst)
+void	free_token(t_token **token)
 {
-	t_token	*curr_node;
-	t_token	*next;
-
-	curr_node = *lst;
-	if (!curr_node)
+	if (!token)
 		return ;
-	while (curr_node)
+	if (*token)
 	{
-		free(curr_node->content);
-		next = curr_node->next;
-		free(curr_node);
-		curr_node = next;
+		free((*token)->data);
+		(*token)->data = NULL;
 	}
-	*lst = NULL;
+	free(*token);
+	*token = NULL;
+}
+
+void	free_all_token(t_token **token)
+{
+	if (!token || !*token)
+		return ;
+	if ((*token)->next)
+		free_all_token(&(*token)->next);
+	free_token(token);
 }
 
 void	*ft_memset(void *b, int c, size_t len)
@@ -74,19 +78,4 @@ t_token *set_new_token(char *str, t_token_type type)
 	return (new_token);
 }
 
-void	print_dlinked_list(t_token *list)
-{
-	t_token	*current = list;
-
-	if(list == NULL)
-	{
-		ft_printf("The list is empty\n");
-		return;
-	}
-	while(current != NULL)
-	{
-//		ft_printf("inside\n");
-		ft_printf("type %d node %s\n", current->type, current->content);
-		current = current->next;
-	}
-}
+v

@@ -6,7 +6,7 @@
 /*   By: ariazano <ariazano@student.42wolfsburg.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/08 23:16:32 by ariazano          #+#    #+#             */
-/*   Updated: 2024/12/18 13:34:16 by ariazano         ###   ########.fr       */
+/*   Updated: 2024/12/20 12:15:30 by ariazano         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -168,7 +168,7 @@ typedef struct	s_data
 
 	t_cmd_list		*list;
 	struct s_token	*token_list;
-	t_token			*tokens;
+	t_token			*token;
 	t_token			*current_token;
 	t_token			*token_proc; //??
 
@@ -219,5 +219,16 @@ char		*find_env_value(char *name, t_envlst *envlst);
 void		unset_env_name_value(char *name, t_envlst *envlst);
 void		set_env_name_value(char *name, char *value, t_envlst *envlst);
 int			get_pwd(char **args);
+
+void	handle_signal(void);
+void	handle_c(int signo);
+void	handle_signal(void);
+int		handle_d(t_data *data, char *line);
+void	handle_sig_child(int signo);
+void	free_redir_list(t_redir **redir);
+void	free_tokens(t_token **begin);
+void	free_list(t_cmd_list **list);
+void	free_pipe(t_pipe_list *pipes);
+void	free_data(t_data *data);
 
 #endif

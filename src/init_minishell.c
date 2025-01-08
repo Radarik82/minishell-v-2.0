@@ -6,7 +6,7 @@
 /*   By: ariazano <ariazano@student.42wolfsburg.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/16 11:46:03 by ariazano          #+#    #+#             */
-/*   Updated: 2024/12/16 11:46:53 by ariazano         ###   ########.fr       */
+/*   Updated: 2024/12/20 10:54:44 by ariazano         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,18 +44,18 @@ void	init_minishell_struct(char **envp, t_data **data)
 	(*data)->token_list = NULL;
 	(*data)->input_line = NULL;
 	(*data)->input_minishell = "minishell>> ";
-	(*data)->env_copy = NULL;
-	(*data)->envlst = create_envlst((((*data)->env_copy)));
-	(*data)->explst = create_explst((*data)->env_copy);
+	//(*data)->env_copy = NULL;
+	//(*data)->envlst = create_envlst((((*data)->env_copy)));
+	//(*data)->explst = create_explst((*data)->env_copy);
 //	tcgetattr(STDIN_FILENO, &data->original_term);
 //	создание энв
-	save_envir((*data), envp);
+	///save_envir((*data), envp);
 // shell v shell'e
-	incr_shell_lvl(*data);
+	///incr_shell_lvl(*data);
 }
 
-void	env_to_minishell(t_data *data)
-{
-	data->env_prompt = NULL;
-}
+//void	env_to_minishell(t_data *data)
+//{
+//	data->env_prompt = NULL;
+//}
 

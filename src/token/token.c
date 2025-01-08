@@ -6,7 +6,7 @@
 /*   By: ariazano <ariazano@student.42wolfsburg.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/08 23:16:32 by ariazano          #+#    #+#             */
-/*   Updated: 2024/12/18 12:14:51 by ariazano         ###   ########.fr       */
+/*   Updated: 2024/12/20 12:02:48 by ariazano         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,7 +55,7 @@ void	message_quotes_error(char linei)
 //	data->exiterrorcode = 258;
 }
 
-int	if_empty_line(t_data *data)
+void	check_empty_line(t_data *data)
 {
 	if (!data->input_line)
 	{
@@ -68,6 +68,8 @@ int	if_empty_line(t_data *data)
 		data->input_line = NULL;
 		return (1);
 	}
+	if (ft_strlen(data->input_line))
+			add_history(data->input_line);
 	return (0);
 }
 // this is DEV
