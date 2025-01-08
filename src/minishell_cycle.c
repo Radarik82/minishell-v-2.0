@@ -6,7 +6,7 @@
 /*   By: ariazano <ariazano@student.42wolfsburg.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/16 10:38:07 by ariazano          #+#    #+#             */
-/*   Updated: 2024/12/18 13:21:53 by ariazano         ###   ########.fr       */
+/*   Updated: 2024/12/20 11:36:54 by ariazano         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,7 @@ void	minishell_cycle(t_data *data)
 {
 	while (1)
 	{
-		g_signal = 0;
+		//g_signal = 0;
 		// signals ???
 		// reset_data(data);
 		data->input_line = readline(PROMPT);
@@ -30,15 +30,15 @@ void	minishell_cycle(t_data *data)
 		print_dlinked_list(data->tokens); // debug
 		ft_strdel(&data->input_line);
 // quotes
-		if((odd_quotes(data->input_line)) || (special_char(data->input_line)) 
-			|| (lexer(data, data->input_line)));
-			continue ;
-		quote_fix(data);
-		init_minishell_struct(data);
-		execute_minishell(data);
+		//if((odd_quotes(data->input_line)) || (special_char(data->input_line)) 
+		//	|| (lexer(data, data->input_line)));
+	//		continue ;
+	//	quote_fix(data);
+	//	init_minishell_struct(data);
+	//	execute_minishell(data);
 	}
 }
-
+/*
 void	reset_data(t_data *data)
 {
 	if (!data)
@@ -47,3 +47,4 @@ void	reset_data(t_data *data)
 	free_list(&data->list);
 	ft_strdel(&data->input_line);
 }
+*/
