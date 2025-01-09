@@ -6,7 +6,7 @@
 /*   By: ariazano <ariazano@student.42wolfsburg.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/20 11:41:59 by ariazano          #+#    #+#             */
-/*   Updated: 2025/01/09 00:11:20 by ariazano         ###   ########.fr       */
+/*   Updated: 2025/01/09 10:36:02 by ariazano         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -115,7 +115,10 @@ void	token_lstaddback(t_token **lst, t_token *new_token);
 void	print_dlinked_list(t_token *list);  // dont forget to remove THIS
 
 // parse.c
-
+void	fix_quotes(t_data *data);
+int	in_quotes_token(char *s, int *start);
+void	trim_tokens_helper(bool *encounter, int *i, int **end);
+char	*trim_tokens(char *input, int start, int *end)
 
 
 #endif

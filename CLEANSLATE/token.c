@@ -6,7 +6,7 @@
 /*   By: ariazano <ariazano@student.42wolfsburg.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/20 12:07:34 by ariazano          #+#    #+#             */
-/*   Updated: 2025/01/09 00:14:38 by ariazano         ###   ########.fr       */
+/*   Updated: 2025/01/09 10:13:38 by ariazano         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,8 +17,8 @@ void	cut_to_token(t_data *data)
 	data->input_line = trim_input(data->promt_line);
 	data->input_line = replace_dollars(data, data->input_line);
 	ft_strdel(data->promt_line);
-	if ((odd_quote(data->input_line)) || (special_chars(data->input_line))
-		|| (lexical_analysis(data, data->input_line)))
+	if ((odd_quote(data->input_line)) || (special_chars(data->input_line)) // dodelat'
+		|| (lexical_analysis(data, data->input_line))) // ??
 		continue ;
 	fix_quotes(data);
 
